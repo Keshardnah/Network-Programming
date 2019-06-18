@@ -1,0 +1,25 @@
+CFLAGS = -Wall -g
+LDFLAGS = 
+
+PRVI_C = CandC.c
+PRVI_O = ${PRVI_C:.c=.o}
+
+DRUGI_C = bot.c
+DRUGI_O = ${DRUGI_C:.c=.o}
+
+TRECI_C = server.c
+TRECI_O = ${TRECI_C:.c=.o}
+
+all: CandC bot server
+
+CandC: $(PRVI_O) 
+	$(CC) $(PRVI_O) -o $@
+	
+bot: $(DRUGI_O) 
+	$(CC) $(DRUGI_O) -o $@
+	
+server: $(TRECI_O)
+	$(CC) $(TRECI_O) -o $@
+	
+clean:
+	-rm -f CandC bot server *.o *.core
